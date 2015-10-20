@@ -72,7 +72,6 @@ decodeMrle (x:xs) = decodeRLPair x ++ decodeMrle xs
 -- encodeDirect (x:xs)
 
 -- | problem 14. Duplicate elements of a list
-
 dupli :: [a] -> [a]
 dupli [] = []
 dupli (x:xs) = x:x:dupli xs
@@ -104,4 +103,4 @@ rotate :: [a] -> Int -> [a]
 rotate [] _ = []
 rotate [xs] _ = [xs]
 rotate xs 0 = xs
-rotate (x:xs) n = rotate ((last xs):(init xs) ++ [x]) (n-1)
+rotate (x:y:xs) n = rotate (y:xs ++ [x]) (n-1)
