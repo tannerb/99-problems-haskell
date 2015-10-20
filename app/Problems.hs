@@ -1,0 +1,2 @@
+problemOne = head . reverse
+
