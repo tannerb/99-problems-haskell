@@ -42,4 +42,11 @@ compress (x:xs) =
     then compress xs
     else x : compress xs
 
--- | problem 9. run length encode
+-- | problem 9. pack
+pack :: Eq a => [a] -> [[a]]
+pack [] = []
+pack (x:xs) = (x : takeWhile (==x) xs) : pack (dropWhile (==x) xs)
+
+-- | problem 10. run length encode
+rle :: Eq a => [a] -> [(Int,a)]
+rle xs = [(length x, head x) | x <- pack xs]
