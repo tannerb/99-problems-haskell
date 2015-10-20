@@ -1,15 +1,45 @@
-problemOne :: [a] -> a
-problemOne = head . reverse
+-- | problem 1. last number in a list
+myLast :: [a] -> a
+myLast = head . reverse
 
-problemTwo :: [a] -> a
-problemTwo = head . tail . reverse
+-- | problem 2. second last element in list
+myButLast :: [a] -> a
+myButLast = head . tail . reverse
 
-problemThree :: Int -> [b] -> b
-problemThree x y = head $ flip drop y (x-1)
+-- | problem 3. element at index, 1 based
+elementAt :: Int -> [b] -> b
+elementAt x y = head $ flip drop y (x-1)
 
-problemFour :: [a] -> Int
-problemFour = foldr (\_ x -> x+1) 0
+-- | problem 4. # of elements in list
+myLength :: [a] -> Int
+myLength = foldr (\_ x -> x+1) 0
 
-problemFive :: [a] -> [a]
-problemFive [] = []
-problemFive (x:xs) = problemFive xs ++ [x]
+myLength' :: [a] -> Int
+myLength' xs = snd $ last $ zip xs [1..]
+
+-- | problem 5. reverse a list
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse [x] = [x]
+myReverse (x:xs) = myReverse xs ++ [x]
+
+-- | problem 6. is same forwards as backwards?
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs =  xs == myReverse xs
+
+-- | problem 7. flatten nested lists
+data NestedList a = Elem a | List [NestedList a]
+myFlatten :: NestedList a -> [a]
+myFlatten (Elem x) = [x]
+myFlatten (List xs) = foldr1 (++) $ map myFlatten xs
+
+-- | problem 8. remove duplicate consecutive entries
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x:xs) = 
+  if x == head xs 
+    then compress xs
+    else x : compress xs
+
+-- | problem 9. run length encode
