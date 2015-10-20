@@ -104,3 +104,24 @@ rotate [] _ = []
 rotate [xs] _ = [xs]
 rotate xs 0 = xs
 rotate (x:y:xs) n = rotate (y:xs ++ [x]) (n-1)
+
+-- | problem 20. remove character at position, return both
+removeAt :: Int -> [a] -> [[a]]
+removeAt _ [] = []
+removeAt n xs = [[last $ take n xs],(take (n-1) xs) ++ (drop n xs)]
+
+-- | problem 21. insert array into other array at pos
+insertAt :: [a] -> [a] -> Int -> [a]
+insertAt ns xs i = (take (i-1) xs) ++ ns ++ (drop (i-1) xs)
+
+-- | problem 22. range from i..k
+range :: Int -> Int -> [Int]
+range i k = take (k-i+1) [x | x <- [i..]
+
+-- | problem 23. extract n random elements from a list
+-- import System.Random
+-- randomSel :: [a] -> Int [a] -> IO [a]
+-- randomSel [] _ = return []
+-- randomSel xs n = do
+--   gen <- getStdGen
+--   return $ take n [ xs !! x | x <- randomRs (0, (length xs) - 1) gen]
